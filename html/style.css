@@ -1,0 +1,88 @@
+body {
+  font-family: 'Lato', sans-serif;
+  width: 1100px;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+}
+
+#container {
+  border: 1px solid #000;
+}
+
+#fasterbutton {
+  margin: 10px auto;
+  color: #FFF;
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.25);
+  background-color: #60B044;
+  background-image: linear-gradient(#8ADD6D, #60B044);
+  background-repeat: repeat-x;
+  border-color: #5CA941;
+  width: 100px;
+  height: 60px;
+}
+
+#estimatepane{}
+
+#rightpane {
+  width: 300px;
+  right: 0;
+//  border: 1px solid #000;
+  min-height: 500px;
+  position: absolute;
+}
+
+#tabs {
+  float: left;
+  width: 800px;
+}
+
+.buttonpanel {
+  width: 300px;
+  position: absolute;
+  bottom: 0;
+  right:0;
+  text-align: center;
+}
+
+svg {
+  font: 10px sans-serif;
+}
+
+.y.axis path {
+  display: none;
+}
+
+.y.axis line {
+  stroke: #fff;
+  stroke-opacity: .2;
+  shape-rendering: crispEdges;
+}
+
+.y.axis .zero line {
+  stroke: #000;
+  stroke-opacity: 1;
+}
+
+.title {
+  font: 300 78px Helvetica Neue;
+  fill: #666;
+}
+
+.birthyear,
+.age {
+  text-anchor: middle;
+}
+
+.birthyear {
+  fill: #fff;
+}
+
+rect {
+  fill-opacity: .6;
+  fill: #e377c2;
+}
+
+rect:first-child {
+  fill: #1f77b4;
+}
