@@ -1,3 +1,3 @@
-[submodule "modcpp"]
-	path = modcpp
-	url = git://github.com/saglam/modcpp.git
+[submodule "dependencies/modcpp"]
+	path = dependencies/modcpp
+	url = git://github.com/saglam/modcpp
