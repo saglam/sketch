@@ -1,3 +1,6 @@
 [submodule "dependencies/modcpp"]
 	path = dependencies/modcpp
 	url = git://github.com/saglam/modcpp
+[submodule "dependencies/poco"]
+	path = dependencies/poco
+	url = git://github.com/pocoproject/poco.git
