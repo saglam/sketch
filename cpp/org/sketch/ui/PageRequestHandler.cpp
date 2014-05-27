@@ -33,6 +33,8 @@ namespace ui {
       resp.setContentType("text/html");      
     } else if (stringEndsWith(req.getURI(), ".css")) {
       resp.setContentType("text/css");
+    } else if (stringEndsWith(req.getURI(), ".js")) {
+      resp.setContentType("application/javascript");
     } else if (stringEndsWith(req.getURI(), ".woff")) {
       resp.setContentType("font/woff");
     }
