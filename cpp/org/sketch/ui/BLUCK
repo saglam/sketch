@@ -1,0 +1,9 @@
+cpp_library(
+  name = "ui",
+  srcs = [
+    "UiServer.h",
+    "UiServer.cpp",
+    "PageRequestHandler.h",
+    "PageRequestHandler.cpp",
+  ],
+)

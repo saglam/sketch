@@ -1,0 +1,9 @@
+cpp_binary(
+  name = "sketch",
+  srcs = [
+    "sketch.cpp",
+  ],
+  deps = [
+    "//cpp/org/sketch/ui",
+  ]
+)
