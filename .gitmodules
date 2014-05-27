@@ -10,3 +10,6 @@
 [submodule "dependencies/Buttons"]
 	path = dependencies/Buttons
 	url = git://github.com/alexwolfe/Buttons.git
+[submodule "dependencies/lato"]
+	path = dependencies/lato
+	url = git://github.com/mrkelly/lato.git
