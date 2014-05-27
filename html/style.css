@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url(lato-regular.woff) format('woff');
+}
+
 body {
   font-family: 'Lato', sans-serif;
   width: 1100px;
