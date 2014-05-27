@@ -7,3 +7,6 @@
 [submodule "dependencies/d3"]
 	path = dependencies/d3
 	url = git://github.com/mbostock/d3.git
+[submodule "dependencies/Buttons"]
+	path = dependencies/Buttons
+	url = git://github.com/alexwolfe/Buttons.git
