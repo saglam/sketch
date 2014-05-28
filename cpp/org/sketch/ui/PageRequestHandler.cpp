@@ -21,22 +21,24 @@ namespace ui {
 
   static bool stringEndsWith(const string& text, const string &pattern) {
     return text.length() >= pattern.length() &&
-        std::equal(text.crend(), text.crend() + pattern.length(), pattern.cbegin());
+        std::equal(text.cend() - pattern.length(), text.cend(), pattern.cbegin());
   }
 
   void PageRequestHandler::handleRequest(HTTPServerRequest &req, HTTPServerResponse &resp) {
     resp.setStatus(HTTPResponse::HTTP_OK);
-    // cout << Poco::format("Received request %s", req.getURI()) << endl;
+    // std::cout << Poco::format("Received request %s", req.getURI()) << std::endl;
     string fileName = req.getURI() == "/" ? "index.html" : (req.getURI().substr(1));
     
-    if (stringEndsWith(req.getURI(), ".html")) {
-      resp.setContentType("text/html");      
-    } else if (stringEndsWith(req.getURI(), ".css")) {
+    if (stringEndsWith(fileName, ".html")) {
+      resp.setContentType("text/html");
+    } else if (stringEndsWith(fileName, ".css")) {
       resp.setContentType("text/css");
-    } else if (stringEndsWith(req.getURI(), ".js")) {
+    } else if (stringEndsWith(fileName, ".js")) {
       resp.setContentType("application/javascript");
-    } else if (stringEndsWith(req.getURI(), ".woff")) {
+    } else if (stringEndsWith(fileName, ".woff")) {
       resp.setContentType("font/woff");
+    } else {
+      resp.setContentType("text/html");
     }
     FileInputStream input(fileName);
     StreamCopier::copyStream(input, resp.send());
