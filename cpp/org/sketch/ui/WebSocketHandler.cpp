@@ -1,13 +1,15 @@
 #include "org/sketch/ui/WebSocketHandler.h"
 
-#include "Poco/Net/WebSocket.h"
-#include "Poco/Net/NetException.h"
 #include "org/modcpp/logging/Console.h"
+#include "org/sketch/entity/SketchProgress.h"
+#include "Poco/Net/NetException.h"
+#include "Poco/Net/WebSocket.h"
 
 namespace org {
 namespace sketch {
 namespace ui {
   using org::modcpp::logging::Console;
+  using org::sketch::entity::SketchProgress;
   using Poco::Net::HTTPResponse;
   using Poco::Net::HTTPServerRequest;
   using Poco::Net::HTTPServerResponse;

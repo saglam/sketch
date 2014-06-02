@@ -20,16 +20,22 @@ namespace ui {
 
   class UiServerRequestHandlerFactory : public HTTPRequestHandlerFactory {
    public:
+    UiServerRequestHandlerFactory(const SketchProgress &progress) : progress(progress) {}
+
     virtual HTTPRequestHandler* createRequestHandler(const HTTPServerRequest &request) {
       if (request.getURI() == "/ws")
-        return new WebSocketHandler;
+        return new WebSocketHandler(progress);
       else
         return new PageRequestHandler;
     }
+
+   private:
+     const SketchProgress &progress;
   };
 
   UiServer::UiServer(const SketchProgress &progress, int port) : progress(progress),
-      httpServer(new UiServerRequestHandlerFactory, ServerSocket(port), new HTTPServerParams) {
+      httpServer(new UiServerRequestHandlerFactory(progress),
+          ServerSocket(port), new HTTPServerParams) {
     httpServer.start();    
   }
   

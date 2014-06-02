@@ -16,7 +16,7 @@ namespace entity {
    public:
     SketchProgress() : totalFileSize(1), processedSize(1), countSketch(8, 8) {}
 
-    CountSketch<String, uint64_t> getCountSketch() { return countSketch; }
+    CountSketch<String, uint64_t> &getCountSketch() { return countSketch; }
 
    private:
     std::size_t totalFileSize;
