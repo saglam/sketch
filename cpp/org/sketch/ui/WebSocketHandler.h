@@ -9,9 +9,7 @@ namespace org {
 namespace sketch {
 
 // For forward declaration
-namespace entity {
-  class SketchProgress;
-}
+namespace entity { class SketchProgress; }
 
 namespace ui {
   using org::sketch::entity::SketchProgress;

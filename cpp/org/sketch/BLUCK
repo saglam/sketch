@@ -2,6 +2,8 @@ cpp_binary(
   name = "sketch",
   srcs = [
     "sketch.cpp",
+    "FileProcessor.h",
+    "FileProcessor.cpp",
   ],
   deps = [
     "//cpp/org/sketch/ui",
