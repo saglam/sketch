@@ -9,11 +9,11 @@ namespace ui {
 
   class UiServer {
    public:
-     UiServer(int port = 8080);
-     ~UiServer();
+    UiServer(int port = 8080);
+    ~UiServer();
 
    private:
-     Poco::Net::HTTPServer httpServer;
+    Poco::Net::HTTPServer httpServer;
   };
 
 }}} // namespace

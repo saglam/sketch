@@ -7,17 +7,15 @@
 #include "Poco/StreamCopier.h"
 #include "Poco/FileStream.h"
 
-using Poco::FileInputStream;
-using Poco::Net::HTTPResponse;
-using Poco::Net::HTTPServerRequest;
-using Poco::Net::HTTPServerResponse;
-using Poco::StreamCopier;
-using std::cout;
-using std::string;
-
 namespace org {
 namespace sketch {
 namespace ui {
+  using Poco::FileInputStream;
+  using Poco::Net::HTTPResponse;
+  using Poco::Net::HTTPServerRequest;
+  using Poco::Net::HTTPServerResponse;
+  using Poco::StreamCopier;
+  using std::string;
 
   static bool stringEndsWith(const string& text, const string &pattern) {
     return text.length() >= pattern.length() &&

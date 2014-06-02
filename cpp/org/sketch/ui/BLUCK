@@ -5,5 +5,15 @@ cpp_library(
     "UiServer.cpp",
     "PageRequestHandler.h",
     "PageRequestHandler.cpp",
+    "WebSocketHandler.h",
+    "WebSocketHandler.cpp",
+  ],
+)
+
+cpp_library(
+  name = "WebSocketHandler",
+  srcs = [
+    "WebSocketHandler.h",
+    "WebSocketHandler.cpp",
   ],
 )
