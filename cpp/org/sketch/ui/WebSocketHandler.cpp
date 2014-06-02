@@ -2,10 +2,12 @@
 
 #include "Poco/Net/WebSocket.h"
 #include "Poco/Net/NetException.h"
+#include "org/modcpp/logging/Console.h"
 
 namespace org {
 namespace sketch {
 namespace ui {
+  using org::modcpp::logging::Console;
   using Poco::Net::HTTPResponse;
   using Poco::Net::HTTPServerRequest;
   using Poco::Net::HTTPServerResponse;
@@ -15,7 +17,18 @@ namespace ui {
   void WebSocketHandler::handleRequest(HTTPServerRequest &request, HTTPServerResponse &response) {
   	try {
       WebSocket webSocket(request, response);
-      webSocket.sendFrame("test", sizeof("test"), 0);
+      int flags;
+      int n;
+      char buffer[1024];
+      do {
+        n = webSocket.receiveFrame(buffer, sizeof(buffer), flags);
+        Console::info("Frame received %.*s\nsize = %d, flags = %d\n", n, buffer, n, flags);
+        webSocket.sendFrame(buffer, n, flags);
+        webSocket.sendFrame("hasan", 5, flags);
+    	} while (n > 0 || (flags & WebSocket::FRAME_OP_BITMASK) != WebSocket::FRAME_OP_CLOSE);
+      //webSocket.sendFrame("testtest", sizeof("testtest") + 1, 0);
+      //webSocket.sendFrame("ddede", sizeof("ddede") + 1, 0);
+
     } catch (WebSocketException& exc) {
       switch (exc.code()) {
         case WebSocket::WS_ERR_HANDSHAKE_UNSUPPORTED_VERSION:

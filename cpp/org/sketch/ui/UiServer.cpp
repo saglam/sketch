@@ -7,16 +7,16 @@
 #include "Poco/Net/HTTPServerRequest.h"
 #include "Poco/Net/ServerSocket.h"
 
-using Poco::Net::HTTPRequestHandler;
-using Poco::Net::HTTPRequestHandlerFactory;
-using Poco::Net::HTTPServer;
-using Poco::Net::HTTPServerParams;
-using Poco::Net::HTTPServerRequest;
-using Poco::Net::ServerSocket;
-
 namespace org {
 namespace sketch {
 namespace ui {
+  using org::sketch::entity::SketchProgress;
+  using Poco::Net::HTTPRequestHandler;
+  using Poco::Net::HTTPRequestHandlerFactory;
+  using Poco::Net::HTTPServer;
+  using Poco::Net::HTTPServerParams;
+  using Poco::Net::HTTPServerRequest;
+  using Poco::Net::ServerSocket;
 
   class UiServerRequestHandlerFactory : public HTTPRequestHandlerFactory {
    public:
@@ -28,8 +28,8 @@ namespace ui {
     }
   };
 
-  UiServer::UiServer(int port) : httpServer(
-      new UiServerRequestHandlerFactory, ServerSocket(port), new HTTPServerParams) {
+  UiServer::UiServer(const SketchProgress &progress, int port) : progress(progress),
+      httpServer(new UiServerRequestHandlerFactory, ServerSocket(port), new HTTPServerParams) {
     httpServer.start();    
   }
   

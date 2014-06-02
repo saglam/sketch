@@ -5,5 +5,9 @@ cpp_binary(
   ],
   deps = [
     "//cpp/org/sketch/ui",
+    "//cpp/org/sketch/entity",
+    "//cpp/org/modcpp/logging",
+    "//cpp/org/modcpp/hashing",
+    "//cpp/org/modcpp/random",
   ]
 )

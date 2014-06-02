@@ -1,0 +1,10 @@
+cpp_library(
+  name = "entity",
+  srcs = [
+    "SketchProgress.h",
+  ],
+  deps = [
+    "//cpp/org/modcpp/string",
+    "//cpp/org/modcpp/sketching",
+  ]
+)

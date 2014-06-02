@@ -5,14 +5,20 @@
 
 namespace org {
 namespace sketch {
-namespace ui {
 
+// For forward declaration
+namespace entity {
+  class SketchProgress;
+}
+
+namespace ui {
   class UiServer {
    public:
-    UiServer(int port = 8080);
+    UiServer(const org::sketch::entity::SketchProgress &progress, int port = 8080);
     ~UiServer();
 
    private:
+    const org::sketch::entity::SketchProgress &progress;
     Poco::Net::HTTPServer httpServer;
   };
 
