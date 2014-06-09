@@ -2,6 +2,7 @@
 #define org_sketch_entity_SketchProgress
 
 #include <cstdint>
+#include <type_traits>
 
 #include "org/modcpp/string/String.h"
 #include "org/modcpp/sketching/CountSketch.h"
@@ -17,20 +18,44 @@ namespace entity {
   class SketchProgress {
    public:
     typedef uint64_t SizeType;
+    typedef String DomainT;
+    typedef uint32_t RangeT;
+    typedef RangeT SpaceSavingRangeT;
+    typedef std::make_signed<RangeT>::type CountSketchRangeT;
+
+    static const uint CountSketchLogRows = 10;
+    static const uint CountSketchLogCols = 10;
+    static const uint SpaceSavingLogCounters = 10; 
 
    public:
     SketchProgress() : totalFileSize(1), processedSize(1),
-        countSketch(8, 8), spaceSavingSketch(10) {}
+        countSketch(CountSketchLogRows, CountSketchLogCols),
+        spaceSavingSketch(SpaceSavingLogCounters) {}
 
-    CountSketch<String, int32_t> &getCountSketch() { return countSketch; }
-    SpaceSavingSketch<String, uint32_t> &getSpaceSavingSketch() { return spaceSavingSketch; }
+    CountSketch<DomainT, CountSketchRangeT> &getCountSketch() { return countSketch; }
+    const CountSketch<DomainT, CountSketchRangeT> &getCountSketch() const { return countSketch; }
+
+    SpaceSavingSketch<DomainT, SpaceSavingRangeT> &getSpaceSavingSketch() {
+      return spaceSavingSketch;
+    }
+
+    const SpaceSavingSketch<DomainT, SpaceSavingRangeT> &getSpaceSavingSketch() const {
+      return spaceSavingSketch;
+    }
+
+    void update(DomainT coord, RangeT update) {
+      countSketch.update(coord, (CountSketchRangeT) update);
+      spaceSavingSketch.update(coord, update);
+    }
+
+    bool isDone() const { return false; }
 
    private:
     SizeType totalFileSize;
     SizeType processedSize;
 
-    CountSketch<String, int32_t> countSketch;
-    SpaceSavingSketch<String, uint32_t> spaceSavingSketch;
+    CountSketch<DomainT, CountSketchRangeT> countSketch;
+    SpaceSavingSketch<DomainT, SpaceSavingRangeT> spaceSavingSketch;
   };
 
 }}} // namespace

@@ -7,6 +7,8 @@ cpp_library(
     "PageRequestHandler.cpp",
     "WebSocketHandler.h",
     "WebSocketHandler.cpp",
+    "ProgressSerializer.h",
+    "ProgressSerializer.cpp",
   ],
 )
 

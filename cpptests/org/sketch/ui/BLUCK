@@ -1,0 +1,14 @@
+cpp_test(
+  name = "ProgressSerializerTest",
+  srcs = [
+    "ProgressSerializerTest.cpp",
+  ],
+  deps = [
+    "//cpp/org/modcpp/hashing",
+    "//cpp/org/modcpp/string",
+    "//cpp/org/modcpp/logging",
+    "//cpp/org/modcpp/random",
+    "//cpp/org/sketch/entity",
+    "//cpp/org/sketch/ui",
+  ]
+)

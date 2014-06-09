@@ -2,14 +2,16 @@
 
 #include "org/modcpp/logging/Console.h"
 #include "org/sketch/entity/SketchProgress.h"
+#include "org/sketch/ui/ProgressSerializer.h"
 #include "Poco/Net/NetException.h"
 #include "Poco/Net/WebSocket.h"
+#include "Poco/Thread.h"
 
 namespace org {
 namespace sketch {
 namespace ui {
   using org::modcpp::logging::Console;
-  using org::modcpp:string::String;
+  using org::modcpp::string::String;
   using org::sketch::entity::SketchProgress;
   using Poco::Net::HTTPResponse;
   using Poco::Net::HTTPServerRequest;
@@ -20,19 +22,14 @@ namespace ui {
   void WebSocketHandler::handleRequest(HTTPServerRequest &request, HTTPServerResponse &response) {
   	try {
       WebSocket webSocket(request, response);
-      int flags;
-      int n;
-      char buffer[1024];
+      ProgressSerializer serializer(progress);
+      int sentBytes;
       do {
-        n = webSocket.receiveFrame(buffer, sizeof(buffer), flags);
-        Console::info("Frame received %.*s\nsize = %d, flags = %d\n", n, buffer, n, flags);
-        String 
-        webSocket.sendFrame(buffer, n, flags);
-        webSocket.sendFrame("hasan", 5, flags);
-    	} while (n > 0 || (flags & WebSocket::FRAME_OP_BITMASK) != WebSocket::FRAME_OP_CLOSE);
-      //webSocket.sendFrame("testtest", sizeof("testtest") + 1, 0);
-      //webSocket.sendFrame("ddede", sizeof("ddede") + 1, 0);
-
+        String message = serializer.getTopK(10);
+        sentBytes = webSocket.sendFrame(message.begin(), message.length(), 129);
+        Console::info("Sent bytes %d\n", sentBytes);
+        Poco::Thread::sleep(1000);
+    	} while (progress.isDone());
     } catch (WebSocketException& exc) {
       switch (exc.code()) {
         case WebSocket::WS_ERR_HANDSHAKE_UNSUPPORTED_VERSION:

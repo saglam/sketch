@@ -14,7 +14,7 @@ namespace sketch {
    public:
     FileProcessor(const String fileName, entity::SketchProgress &progress) : progress(progress) {}
 
-  private:
+   private:
     entity::SketchProgress &progress;
   };
   
