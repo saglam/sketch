@@ -11,5 +11,6 @@ cpp_binary(
     "//cpp/org/modcpp/logging",
     "//cpp/org/modcpp/hashing",
     "//cpp/org/modcpp/random",
+    "//cpp/org/modcpp/string",
   ]
 )

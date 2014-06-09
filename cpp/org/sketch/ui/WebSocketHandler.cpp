@@ -27,9 +27,9 @@ namespace ui {
       do {
         String message = serializer.getTopK(10);
         sentBytes = webSocket.sendFrame(message.begin(), message.length(), 129);
-        Console::info("Sent bytes %d\n", sentBytes);
+        Console::info("Sent bytes %d\n", message.length());
         Poco::Thread::sleep(1000);
-    	} while (progress.isDone());
+      } while (!progress.isDone());
     } catch (WebSocketException& exc) {
       switch (exc.code()) {
         case WebSocket::WS_ERR_HANDSHAKE_UNSUPPORTED_VERSION:
@@ -42,6 +42,8 @@ namespace ui {
           response.setContentLength(0);
           response.send();
           break;
+        default:
+          Console::warning("Unknown exception");
       }
     }
   }

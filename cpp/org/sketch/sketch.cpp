@@ -1,3 +1,6 @@
+#include <thread>
+#include <chrono>
+
 #include "org/modcpp/base/base.h"
 #include "org/modcpp/string/String.h"
 #include "org/sketch/entity/SketchProgress.h"
@@ -15,7 +18,7 @@ int main(int argc, const char *argv[]) {
   FileProcessor fileProcessor(fileName, progress);
   UiServer uiServer(progress);
   system("open http://localhost:8080");
-
-  sleep(1000);
+  fileProcessor.start();
+  sleep(3);
   return 0;
 }

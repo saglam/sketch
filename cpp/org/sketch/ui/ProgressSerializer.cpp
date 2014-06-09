@@ -14,14 +14,14 @@ namespace ui {
   	const auto &countSketch = progress.getCountSketch();
   	String serialized = "[";
   	for (auto &item : items) {
-  	  StringBuilder builder(100);
+  	  StringBuilder builder(128);
   	  serialized = serialized + builder.put("[\"").put(item.coord).put("\",")
   	  	  .put(String::valueOf(item.count)).put(",")
   	  	  .put(String::valueOf(item.count - item.maxOvershoot)).put(",")
   	  	  .put(String::valueOf(countSketch.get(item.coord))).put("],")
   	  	  .build();
   	}
-  	return serialized.trimRight(1) + "]";
+    return items.empty() ? "[]" : serialized.trimRight(1) + "]";
   }
 
 }}} // namespace

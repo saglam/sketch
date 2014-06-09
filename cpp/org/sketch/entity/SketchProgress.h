@@ -3,6 +3,7 @@
 
 #include <cstdint>
 #include <type_traits>
+#include <iostream>
 
 #include "org/modcpp/string/String.h"
 #include "org/modcpp/sketching/CountSketch.h"
@@ -44,6 +45,7 @@ namespace entity {
     }
 
     void update(DomainT coord, RangeT update) {
+      std::cout << "Updating " << coord << "\n";
       countSketch.update(coord, (CountSketchRangeT) update);
       spaceSavingSketch.update(coord, update);
     }

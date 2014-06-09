@@ -80,8 +80,7 @@ sk.net();
 sk.net.initWebSocket(function(evt) {
   var msg = evt.data;
   alert("msg" + msg);
-}
-);
+});
 
 var margin = {top: 20, right: 40, bottom: 30, left: 20},
     width = 760 - margin.left - margin.right,

@@ -17,8 +17,10 @@ void test_getTopK() {
   ProgressSerializer serializer(progress);
 
   progress.update("key1", 100);
+  progress.update("key2", 200);
+  progress.update("key3", 300);
 
-  std::cout << serializer.getTopK(2) << "\n";
+  std::cout << serializer.getTopK(4) << "\n";
 }
 
 int main() {
