@@ -14,24 +14,24 @@ namespace sketch {
   }
 
   FileProcessor::~FileProcessor() {
-  	fclose(file);
+    fclose(file);
   }
 
   void FileProcessor::start() {
-  	Poco::Thread thread;
-  	thread.start(*this);
-  	thread.join();
+    Poco::Thread thread;
+    thread.start(*this);
+    thread.join();
   }
 
   void FileProcessor::run() {
-  	char buffer[512];
-  	if (file == nullptr) {
-  	  return;
-  	}
-  	while (fscanf(file, "%s", buffer) > 0) {
-  	  progress.update(String::copyOf(buffer), 1);
-  	}
-  	Poco::Thread::sleep(1000);
+    char buffer[512];
+    if (file == nullptr) {
+      return;
+    }
+    while (fscanf(file, "%s", buffer) > 0) {
+      progress.update(String::copyOf(buffer), 1);
+    }
+    Poco::Thread::sleep(1000);
   }
 
 }} // namespace

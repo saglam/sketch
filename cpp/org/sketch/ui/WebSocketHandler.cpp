@@ -20,7 +20,7 @@ namespace ui {
   using Poco::Net::WebSocketException;
 
   void WebSocketHandler::handleRequest(HTTPServerRequest &request, HTTPServerResponse &response) {
-  	try {
+    try {
       WebSocket webSocket(request, response);
       ProgressSerializer serializer(progress);
       int sentBytes;

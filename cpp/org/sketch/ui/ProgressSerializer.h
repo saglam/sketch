@@ -12,21 +12,21 @@ namespace ui {
 
   class ProgressSerializer {
    public:
-   	typedef uint32_t SizeType;
-   	struct Item {
-   	  SketchProgress::DomainT coord;
-   	  SketchProgress::SpaceSavingRangeT count;
-   	  SketchProgress::SpaceSavingRangeT maxOvershoot;
-   	};
+    typedef uint32_t SizeType;
+    struct Item {
+      SketchProgress::DomainT coord;
+      SketchProgress::SpaceSavingRangeT count;
+      SketchProgress::SpaceSavingRangeT maxOvershoot;
+    };
 
    public:
-  	ProgressSerializer(const SketchProgress &progress) : progress(progress) {}
+    ProgressSerializer(const SketchProgress &progress) : progress(progress) {}
 
    public:
-   	String getTopK(SizeType k);
+    String getTopK(SizeType k);
 
    private:
-   	const SketchProgress &progress;
+    const SketchProgress &progress;
   };
 
 }}} // namespace

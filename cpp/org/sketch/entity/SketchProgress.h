@@ -45,7 +45,7 @@ namespace entity {
     }
 
     void update(DomainT coord, RangeT update) {
-      std::cout << "Updating " << coord << "\n";
+      // std::cout << "Updating " << coord << "\n";
       countSketch.update(coord, (CountSketchRangeT) update);
       spaceSavingSketch.update(coord, update);
     }
