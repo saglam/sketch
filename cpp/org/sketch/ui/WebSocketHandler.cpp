@@ -9,6 +9,7 @@ namespace org {
 namespace sketch {
 namespace ui {
   using org::modcpp::logging::Console;
+  using org::modcpp:string::String;
   using org::sketch::entity::SketchProgress;
   using Poco::Net::HTTPResponse;
   using Poco::Net::HTTPServerRequest;
@@ -25,6 +26,7 @@ namespace ui {
       do {
         n = webSocket.receiveFrame(buffer, sizeof(buffer), flags);
         Console::info("Frame received %.*s\nsize = %d, flags = %d\n", n, buffer, n, flags);
+        String 
         webSocket.sendFrame(buffer, n, flags);
         webSocket.sendFrame("hasan", 5, flags);
     	} while (n > 0 || (flags & WebSocket::FRAME_OP_BITMASK) != WebSocket::FRAME_OP_CLOSE);

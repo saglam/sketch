@@ -1,5 +1,4 @@
 #include "org/modcpp/base/base.h"
-
 #include "org/modcpp/string/String.h"
 #include "org/sketch/entity/SketchProgress.h"
 #include "org/sketch/FileProcessor.h"
