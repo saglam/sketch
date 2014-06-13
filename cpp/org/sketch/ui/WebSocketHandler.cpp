@@ -1,6 +1,7 @@
 #include "org/sketch/ui/WebSocketHandler.h"
 
-#include "org/modcpp/logging/Console.h"
+#include <iostream>
+
 #include "org/sketch/entity/SketchProgress.h"
 #include "org/sketch/ui/ProgressSerializer.h"
 #include "Poco/Net/NetException.h"
@@ -10,7 +11,6 @@
 namespace org {
 namespace sketch {
 namespace ui {
-  using org::modcpp::logging::Console;
   using org::modcpp::string::String;
   using org::sketch::entity::SketchProgress;
   using Poco::Net::HTTPResponse;
@@ -25,10 +25,10 @@ namespace ui {
       ProgressSerializer serializer(progress);
       int sentBytes;
       do {
-        String message = serializer.getTopK(10);
+        String message = serializer.getTopK(30);
         sentBytes = webSocket.sendFrame(message.begin(), message.length(), 129);
-        Console::info("Sent bytes %d\n", message.length());
-        Poco::Thread::sleep(1000);
+        std::cout << "Sent: " << message << "\n";
+        Poco::Thread::sleep(100);
       } while (!progress.isDone());
     } catch (WebSocketException& exc) {
       switch (exc.code()) {
@@ -43,7 +43,7 @@ namespace ui {
           response.send();
           break;
         default:
-          Console::warning("Unknown exception");
+          break;
       }
     }
   }

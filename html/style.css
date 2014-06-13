@@ -75,13 +75,13 @@ svg {
   fill: #666;
 }
 
-.birthyear,
+.rankeditem,
 .age {
   text-anchor: middle;
 }
 
-.birthyear {
-  fill: #fff;
+.rankeditem {
+  fill: #333;
 }
 
 rect {
